@@ -8,7 +8,7 @@
 
     <string name="sign_up">Sign in with Google</string>
     <string name="start_preparation">Start preparation</string>
-    <string name="previously_solved_questions">Previously solved questions</string>
+    <string name="previously_solved_questions">Revision</string>
     <string name="question_topic">Topic - Data structures</string>
     <string name="question_label">Question:</string>
     <string name="answer_hint">You can type your answer here&#8230;</string>
@@ -17,4 +17,6 @@
     <string name="no_answer_error">Please type an answer</string>
     <string name="actual_answer">The proper answer to give would be&#8230;</string>
     <string name="all_questions_solved">You have solved all questions!!\nWell done!!!</string>
+    
+    <string name="no_questions_solved">Oh! You haven\'t solved any questions yet!!\nYou can find some questions to solve on click of \"Start Preparation\" button</string>
 </resources>

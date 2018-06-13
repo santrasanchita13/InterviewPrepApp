@@ -70,4 +70,9 @@ public class AppDataManager implements DataManager {
     public Observable<Boolean> updateAnswer(InterviewItem interviewItem) {
         return dbHelper.updateAnswer(interviewItem);
     }
+
+    @Override
+    public Observable<List<InterviewItem>> getSolvedQuestions() {
+        return dbHelper.getSolvedQuestions();
+    }
 }

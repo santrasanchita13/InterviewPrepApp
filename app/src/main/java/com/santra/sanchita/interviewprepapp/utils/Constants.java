@@ -14,6 +14,10 @@ public interface Constants {
     String MY_NAME = "Pakhi";
     String MY_PHONE_NUMBER = "+919002006213";
     String LOGGED_IN_USER_NAME = "LOGGED_IN_USER_NAME";
+    String REVISION = "REVISION";
+    String REVISING_QUESTION = "REVISING_QUESTION";
+    String REVISING_ANSWER = "REVISING_ANSWER";
+    String REVISING_USER_ANSWER = "REVISING_USER_ANSWER";
     String DB_NAME = "interview_prep_db";
     String CLIENT_SECRET_FILE = "client_secret.json";
 

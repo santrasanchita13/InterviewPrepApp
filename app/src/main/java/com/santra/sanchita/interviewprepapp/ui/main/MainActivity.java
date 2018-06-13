@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.santra.sanchita.interviewprepapp.R;
 import com.santra.sanchita.interviewprepapp.ui.base.BaseActivity;
 import com.santra.sanchita.interviewprepapp.ui.question.QuestionActivity;
+import com.santra.sanchita.interviewprepapp.ui.revise.ReviseActivity;
 import com.santra.sanchita.interviewprepapp.utils.Constants;
 
 import javax.inject.Inject;
@@ -93,6 +94,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @OnClick(R.id.previousQuestionsButton)
     public void previousQuestionsButtonClick() {
-
+        startActivity(ReviseActivity.getStartIntent(this));
     }
 }

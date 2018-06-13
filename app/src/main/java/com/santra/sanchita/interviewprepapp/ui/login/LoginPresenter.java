@@ -31,27 +31,4 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
         getDataManager().setAuthCode(authCode);
         getMvpView().signUpSuccessful();
     }
-
-    /*@Override
-    public void getQuestionList() {
-        getCompositeDisposable().add(getDataManager()
-                .getInterviewQuestions()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(interviewItems -> {
-                    if (!isViewAttached()) {
-                        return;
-                    }
-                    if(interviewItems != null && interviewItems.size() > 0) {
-                        for (InterviewItem interviewItem : interviewItems) {
-                            getMvpView().addToList(interviewItem);
-                        }
-                    }
-                }, throwable -> {
-                    if(!isViewAttached()) {
-                        return;
-                    }
-                    getMvpView().onError(R.string.default_error);
-                }));
-    }*/
 }

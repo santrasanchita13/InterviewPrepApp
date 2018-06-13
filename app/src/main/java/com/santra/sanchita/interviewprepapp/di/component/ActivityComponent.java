@@ -5,6 +5,7 @@ import com.santra.sanchita.interviewprepapp.di.module.ActivityModule;
 import com.santra.sanchita.interviewprepapp.ui.login.LoginActivity;
 import com.santra.sanchita.interviewprepapp.ui.main.MainActivity;
 import com.santra.sanchita.interviewprepapp.ui.question.QuestionActivity;
+import com.santra.sanchita.interviewprepapp.ui.revise.ReviseActivity;
 import com.santra.sanchita.interviewprepapp.ui.splash.SplashActivity;
 
 import dagger.Component;
@@ -24,4 +25,6 @@ public interface ActivityComponent {
     void inject(MainActivity activity);
 
     void inject(QuestionActivity activity);
+
+    void inject(ReviseActivity activity);
 }

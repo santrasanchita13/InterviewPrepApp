@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="fa_id_thumbs_up">&#xf164;</string>
+    <string name="fa_id_frown">&#xf119;</string>
+    <string name="fa_id_redo">&#xf01e;</string>
 </resources>

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.santra.sanchita.interviewprepapp.R;
 import com.santra.sanchita.interviewprepapp.data.db.model.InterviewItem;
 import com.santra.sanchita.interviewprepapp.ui.base.BaseActivity;
+import com.santra.sanchita.interviewprepapp.utils.Constants;
 
 import javax.inject.Inject;
 
@@ -81,7 +82,16 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
 
     @Override
     protected void setUp() {
-        presenter.getQuestion();
+        if(getIntent().getBooleanExtra(Constants.REVISION, false)) {
+            InterviewItem interviewItem = new InterviewItem(getIntent().getStringExtra(Constants.REVISING_QUESTION),
+                    getIntent().getStringExtra(Constants.REVISING_ANSWER),
+                    getIntent().getStringExtra(Constants.REVISING_USER_ANSWER), false);
+            answerEditText.setText(getIntent().getStringExtra(Constants.REVISING_USER_ANSWER));
+            questionFetched(interviewItem);
+        }
+        else {
+            presenter.getQuestion();
+        }
     }
 
     @Override
@@ -148,7 +158,14 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
             // show the popup window
             popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
 
-            popupWindow.setOnDismissListener(() -> presenter.getQuestion());
+            popupWindow.setOnDismissListener(() -> {
+                if(getIntent().getBooleanExtra(Constants.REVISION, false)) {
+                    QuestionActivity.this.finish();
+                }
+                else {
+                    presenter.getQuestion();
+                }
+            });
         }
     }
 

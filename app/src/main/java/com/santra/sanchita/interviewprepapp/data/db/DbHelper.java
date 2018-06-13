@@ -18,5 +18,7 @@ public interface DbHelper {
 
     Observable<List<InterviewItem>> getUnsolvedQuestions();
 
+    Observable<List<InterviewItem>> getSolvedQuestions();
+
     Observable<Boolean> updateAnswer(InterviewItem interviewItem);
 }

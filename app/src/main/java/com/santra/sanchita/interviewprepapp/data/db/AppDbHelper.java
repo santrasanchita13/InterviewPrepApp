@@ -43,6 +43,12 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
+    public Observable<List<InterviewItem>> getSolvedQuestions() {
+        return Observable.fromCallable(() -> daoSession.getInterviewItemDao()
+                .queryBuilder().where(InterviewItemDao.Properties.Solved.eq(true)).list());
+    }
+
+    @Override
     public Observable<Boolean> updateAnswer(InterviewItem interviewItem) {
         return Observable.fromCallable(() -> {
             daoSession.getInterviewItemDao().update(interviewItem);
