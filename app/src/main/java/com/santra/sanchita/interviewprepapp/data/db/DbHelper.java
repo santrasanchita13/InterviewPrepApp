@@ -15,4 +15,8 @@ public interface DbHelper {
     Observable<Long> addToOfflineDb(InterviewItem interviewItem);
 
     Observable<List<InterviewItem>> getInterviewQuestions();
+
+    Observable<List<InterviewItem>> getUnsolvedQuestions();
+
+    Observable<Boolean> updateAnswer(InterviewItem interviewItem);
 }

@@ -18,16 +18,20 @@ public class InterviewItem {
     private String question;
 
     @Property(nameInDb = "answer")
-    @Unique
     private String answer;
+
+    @Property(nameInDb = "user_answer")
+    private String userAnswer;
 
     @Property(nameInDb = "solved")
     private Boolean solved;
 
-    @Generated(hash = 1861020798)
-    public InterviewItem(String question, String answer, Boolean solved) {
+    @Generated(hash = 434957095)
+    public InterviewItem(String question, String answer, String userAnswer,
+            Boolean solved) {
         this.question = question;
         this.answer = answer;
+        this.userAnswer = userAnswer;
         this.solved = solved;
     }
 
@@ -51,6 +55,14 @@ public class InterviewItem {
         this.answer = answer;
     }
 
+    public String getUserAnswer() {
+        return this.userAnswer;
+    }
+
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
+    }
+
     public Boolean getSolved() {
         return this.solved;
     }
@@ -58,6 +70,4 @@ public class InterviewItem {
     public void setSolved(Boolean solved) {
         this.solved = solved;
     }
-
-
 }

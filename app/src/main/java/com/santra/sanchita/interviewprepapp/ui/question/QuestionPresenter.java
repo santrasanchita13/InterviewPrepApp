@@ -1,8 +1,8 @@
-package com.santra.sanchita.interviewprepapp.ui.splash;
+package com.santra.sanchita.interviewprepapp.ui.question;
 
+import com.santra.sanchita.interviewprepapp.R;
 import com.santra.sanchita.interviewprepapp.data.DataManager;
 import com.santra.sanchita.interviewprepapp.data.db.model.InterviewItem;
-import com.santra.sanchita.interviewprepapp.data.network.model.Question;
 import com.santra.sanchita.interviewprepapp.ui.base.BasePresenter;
 import com.santra.sanchita.interviewprepapp.utils.rx.SchedulerProvider;
 
@@ -13,13 +13,13 @@ import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * Created by sanchita on 8/12/17.
+ * Created by sanchita on 13/6/18.
  */
 
-public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> implements SplashMvpPresenter<V> {
+public class QuestionPresenter<V extends QuestionMvpView> extends BasePresenter<V> implements QuestionMvpPresenter<V> {
 
     @Inject
-    public SplashPresenter(DataManager dataManager,
+    public QuestionPresenter(DataManager dataManager,
                            SchedulerProvider schedulerProvider,
                            CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProvider, compositeDisposable);
@@ -31,47 +31,49 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
     }
 
     @Override
-    public void syncDatabase() {
+    public List<InterviewItem> getQuestion() {
         getCompositeDisposable().add(getDataManager()
-                .getQuestions()
+                .getUnsolvedQuestions()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(networkQuestions -> {
+                .subscribe(questionList -> {
                     if (!isViewAttached()) {
                         return;
                     }
-                    List<Question> questions = networkQuestions.getQuestions();
-
-                    if(questions != null && questions.size() > 0) {
-                        for(Question question : questions) {
-                            InterviewItem interviewItem = new InterviewItem(question.getQuestion(), question.getAnswer(), "", false);
-                            addToOfflineDb(interviewItem);
-                        }
+                    if(questionList != null && questionList.size() > 0) {
+                        getMvpView().questionFetched(questionList.get(0));
                     }
-                    getMvpView().nextActivity();
+                    else {
+                        getMvpView().questionListEmpty();
+                    }
                 }, throwable -> {
                     if(!isViewAttached()) {
                         return;
                     }
-                    getMvpView().errorSyncingDatabase();
-                    getMvpView().nextActivity();
+                    getMvpView().onError(R.string.default_error);
                 }));
+        return null;
     }
 
-    public void addToOfflineDb(InterviewItem question) {
+    @Override
+    public Boolean updateAnswer(InterviewItem interviewItem) {
         getCompositeDisposable().add(getDataManager()
-                .addToOfflineDb(question)
+                .updateAnswer(interviewItem)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(inserted -> {
+                .subscribe(updated -> {
                     if (!isViewAttached()) {
                         return;
+                    }
+                    if(updated) {
+                        getMvpView().submittedAnswer();
                     }
                 }, throwable -> {
                     if(!isViewAttached()) {
                         return;
                     }
-                    getMvpView().errorSyncingDatabase();
+                    getMvpView().onError(R.string.default_error);
                 }));
+        return true;
     }
 }

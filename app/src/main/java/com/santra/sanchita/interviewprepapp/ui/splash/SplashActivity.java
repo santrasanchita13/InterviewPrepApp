@@ -110,6 +110,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
                 userName = account.getId();
             }
             mainActivityIntent.putExtra(Constants.LOGGED_IN_USER_NAME, userName);
+            finish();
             startActivity(mainActivityIntent);
         }
     }

@@ -23,4 +23,8 @@
     <dimen name="largest_text_size">30sp</dimen>
 
     <dimen name="icon_size">20sp</dimen>
+
+    <dimen name="pop_up_width">300dp</dimen>
+
+    <integer name="max_lines">10</integer>
 </resources>

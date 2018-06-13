@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_button_white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/suggestionTextView"
+        android:layout_width="@dimen/pop_up_width"
+        android:layout_height="wrap_content"
+        android:text="@string/actual_answer"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/grey"
+        android:paddingTop="@dimen/small_margin"
+        android:paddingStart="@dimen/small_margin"
+        android:paddingEnd="@dimen/small_margin"/>
+    <TextView
+        android:id="@+id/answerTextView"
+        app:layout_constraintTop_toBottomOf="@+id/suggestionTextView"
+        android:layout_width="@dimen/pop_up_width"
+        android:layout_height="wrap_content"
+        android:maxLines="@integer/max_lines"
+        android:scrollbars="vertical"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/black"
+        android:text="@string/default_text"
+        android:padding="@dimen/small_margin"
+        />
+</android.support.constraint.ConstraintLayout>

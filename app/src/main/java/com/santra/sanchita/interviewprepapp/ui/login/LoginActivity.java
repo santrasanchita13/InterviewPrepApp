@@ -142,6 +142,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 userName = account.getId();
             }
             mainActivityIntent.putExtra(Constants.LOGGED_IN_USER_NAME, userName);
+            finish();
             startActivity(mainActivityIntent);
         }
         else {
