@@ -25,4 +25,14 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
     }
+
+    @Override
+    public void setFirstRun(boolean firstRun) {
+        getDataManager().setFirstRun(firstRun);
+    }
+
+    @Override
+    public boolean isFirstRun() {
+        return getDataManager().isFirstRun();
+    }
 }

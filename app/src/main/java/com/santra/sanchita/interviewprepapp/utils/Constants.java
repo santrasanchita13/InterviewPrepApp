@@ -7,6 +7,7 @@ package com.santra.sanchita.interviewprepapp.utils;
 public interface Constants {
     String SHARED_PREF = "SHARED_PREF";
     String SHARED_PREF_AUTH_CODE = "SHARED_PREF_AUTH_CODE";
+    String FIRST_RUN = "FIRST_RUN";
     String BASE_URL = "https://learncodeonline.in";
     String STORED_CREDENTIAL = "STORED_CREDENTIAL";
 

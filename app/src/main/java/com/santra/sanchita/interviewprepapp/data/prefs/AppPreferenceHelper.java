@@ -32,4 +32,14 @@ public class AppPreferenceHelper implements PreferenceHelper {
     public void setAuthCode(String authCode) {
         mPrefs.edit().putString(Constants.SHARED_PREF_AUTH_CODE, authCode).apply();
     }
+
+    @Override
+    public boolean isFirstRun() {
+        return mPrefs.getBoolean(Constants.FIRST_RUN, true);
+    }
+
+    @Override
+    public void setFirstRun(boolean firstRun) {
+        mPrefs.edit().putBoolean(Constants.FIRST_RUN, firstRun).apply();
+    }
 }

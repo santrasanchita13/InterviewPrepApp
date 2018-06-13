@@ -81,4 +81,42 @@
         android:src="@drawable/logo"
         android:background="@color/light_grey"
         />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/instructionsStartPrep"
+        android:layout_width="@dimen/pop_up_width"
+        android:layout_height="wrap_content"
+        android:text="@string/start_prep_instructions"
+        android:textColor="@color/light_grey"
+        android:textSize="@dimen/text_size"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/startPreparationButton"
+        android:padding="@dimen/small_margin"
+        />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/instructionsRevision"
+        android:layout_width="@dimen/pop_up_width"
+        android:layout_height="wrap_content"
+        android:text="@string/revision_instructions"
+        android:textColor="@color/light_grey"
+        android:textSize="@dimen/text_size"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/previousQuestionsButton"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="@dimen/small_margin"
+        />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/instructionsFinal"
+        android:layout_width="@dimen/pop_up_width"
+        android:layout_height="wrap_content"
+        android:text="@string/final_instruction"
+        android:textColor="@color/light_grey"
+        android:textSize="@dimen/text_size"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/instructionsRevision"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="@dimen/small_margin"
+        />
 </android.support.constraint.ConstraintLayout>

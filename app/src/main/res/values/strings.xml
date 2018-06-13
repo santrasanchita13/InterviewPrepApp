@@ -18,5 +18,13 @@
     <string name="actual_answer">The proper answer to give would be&#8230;</string>
     <string name="all_questions_solved">You have solved all questions!!\nWell done!!!</string>
     
-    <string name="no_questions_solved">Oh! You haven\'t solved any questions yet!!\nYou can find some questions to solve on click of \"Start Preparation\" button</string>
+    <string name="no_questions_solved">Oh! You haven\'t solved any questions yet!!\n
+        You can find some questions to solve on click of \"Start Preparation\" button</string>
+
+    <string name="start_prep_instructions">\"Start Preparation\" button let\'s you solve questions and understand the
+    correct answer.</string>
+
+    <string name="revision_instructions">\"Revision\" button allows you to see previously solved quesiton-answers.</string>
+
+    <string name="final_instruction">You are sure to benefit from this app. Wishing you good luck!</string>
 </resources>

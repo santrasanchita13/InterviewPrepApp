@@ -47,6 +47,16 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public boolean isFirstRun() {
+        return preferenceHelper.isFirstRun();
+    }
+
+    @Override
+    public void setFirstRun(boolean firstRun) {
+        preferenceHelper.setFirstRun(firstRun);
+    }
+
+    @Override
     public Observable<InterviewNetworkModel> getQuestions() {
         return apiHelper.getQuestions();
     }

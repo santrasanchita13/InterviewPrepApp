@@ -28,5 +28,7 @@
 
     <dimen name="pop_up_width">300dp</dimen>
 
+    <dimen name="instruction_width">180dp</dimen>
+
     <integer name="max_lines">10</integer>
 </resources>

@@ -86,7 +86,6 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
             InterviewItem interviewItem = new InterviewItem(getIntent().getStringExtra(Constants.REVISING_QUESTION),
                     getIntent().getStringExtra(Constants.REVISING_ANSWER),
                     getIntent().getStringExtra(Constants.REVISING_USER_ANSWER), false);
-            answerEditText.setText(getIntent().getStringExtra(Constants.REVISING_USER_ANSWER));
             questionFetched(interviewItem);
         }
         else {
@@ -97,7 +96,12 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
     @Override
     public void questionFetched(InterviewItem question) {
         presentQuestion = question;
-        answerEditText.setText("");
+        if(getIntent().getBooleanExtra(Constants.REVISION, false)) {
+            answerEditText.setText(getIntent().getStringExtra(Constants.REVISING_USER_ANSWER));
+        }
+        else {
+            answerEditText.setText("");
+        }
         questionTextView.setText(question.getQuestion());
     }
 

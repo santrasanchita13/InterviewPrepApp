@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.TextView;
 
 import com.santra.sanchita.interviewprepapp.R;
@@ -30,6 +31,15 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @BindView(R.id.welcomeButton)
     TextView welcomeButton;
+
+    @BindView(R.id.instructionsStartPrep)
+    TextView instructionsStartPrep;
+
+    @BindView(R.id.instructionsRevision)
+    TextView instructionsRevision;
+
+    @BindView(R.id.instructionsFinal)
+    TextView instructionsFinal;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -67,10 +77,21 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Override
     protected void setUp() {
         welcomeButton.setText("Welcome " + getIntent().getStringExtra(Constants.LOGGED_IN_USER_NAME));
+
+        if(presenter.isFirstRun()) {
+            instructionsFinal.setVisibility(View.VISIBLE);
+            instructionsRevision.setVisibility(View.VISIBLE);
+            instructionsStartPrep.setVisibility(View.VISIBLE);
+            presenter.setFirstRun(false);
+        }
+        else {
+            removeInstructions();
+        }
     }
 
     @OnClick(R.id.logoImageMain)
     public void logoImageClick() {
+        removeInstructions();
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
@@ -80,6 +101,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @OnClick(R.id.mainActivityAd)
     public void mainActivityAdClick() {
+        removeInstructions();
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
@@ -89,11 +111,19 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @OnClick(R.id.startPreparationButton)
     public void startPreparationButtonClick() {
+        removeInstructions();
         startActivity(QuestionActivity.getStartIntent(this));
     }
 
     @OnClick(R.id.previousQuestionsButton)
     public void previousQuestionsButtonClick() {
+        removeInstructions();
         startActivity(ReviseActivity.getStartIntent(this));
+    }
+
+    void removeInstructions() {
+        instructionsFinal.setVisibility(View.GONE);
+        instructionsRevision.setVisibility(View.GONE);
+        instructionsStartPrep.setVisibility(View.GONE);
     }
 }

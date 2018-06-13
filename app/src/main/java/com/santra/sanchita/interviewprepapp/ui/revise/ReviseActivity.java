@@ -2,6 +2,7 @@ package com.santra.sanchita.interviewprepapp.ui.revise;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -133,5 +134,14 @@ public class ReviseActivity extends BaseActivity implements ReviseMvpView {
         reviseQuestion.putExtra(Constants.REVISING_ANSWER, interviewItem.getAnswer());
         reviseQuestion.putExtra(Constants.REVISING_USER_ANSWER, interviewItem.getUserAnswer());
         startActivity(reviseQuestion);
+    }
+
+    @OnClick(R.id.reviseActivityAd)
+    public void reviseActivityAdClick() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse("https://courses.learncodeonline.in"));
+        startActivity(intent);
     }
 }

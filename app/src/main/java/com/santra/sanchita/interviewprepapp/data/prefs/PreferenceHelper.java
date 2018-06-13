@@ -8,4 +8,8 @@ public interface PreferenceHelper {
     String getAuthCode();
 
     void setAuthCode(String authCode);
+
+    boolean isFirstRun();
+
+    void setFirstRun(boolean firstRun);
 }

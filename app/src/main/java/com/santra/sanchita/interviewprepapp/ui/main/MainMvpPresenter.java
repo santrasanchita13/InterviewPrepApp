@@ -7,4 +7,8 @@ import com.santra.sanchita.interviewprepapp.ui.base.MvpPresenter;
  */
 
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
+
+    void setFirstRun(boolean firstRun);
+
+    boolean isFirstRun();
 }
