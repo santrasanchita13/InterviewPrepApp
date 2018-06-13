@@ -7,10 +7,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Scope;
+import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import com.santra.sanchita.interviewprepapp.R;
 import com.santra.sanchita.interviewprepapp.ui.base.BaseActivity;
 import com.santra.sanchita.interviewprepapp.ui.login.LoginActivity;
+import com.santra.sanchita.interviewprepapp.ui.main.MainActivity;
 import com.santra.sanchita.interviewprepapp.utils.Constants;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.inject.Inject;
 
@@ -24,6 +35,8 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Inject
     SplashMvpPresenter<SplashMvpView> presenter;
+
+    private GoogleSignInClient mGoogleSignInClient;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, SplashActivity.class);
@@ -60,12 +73,45 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     protected void setUp() {
+
+        try {
+            GoogleClientSecrets clientSecrets =
+                    GoogleClientSecrets.load(
+                            JacksonFactory.getDefaultInstance(), new InputStreamReader(getAssets().open(Constants.CLIENT_SECRET_FILE)));
+
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestScopes(new Scope("https://mail.google.com/"))
+                    .requestServerAuthCode(clientSecrets.getDetails().getClientId(), true)
+                    .requestIdToken(clientSecrets.getDetails().getClientId())
+                    .requestEmail()
+                    .build();
+
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         new Handler().postDelayed(() -> presenter.syncDatabase(), Constants.SPLASH_DELAY);
     }
 
     @Override
     public void nextActivity() {
-        startActivity(LoginActivity.getStartIntent(this));
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
+        if(account == null) {
+            if(mGoogleSignInClient != null) {
+                mGoogleSignInClient.signOut().addOnCompleteListener(task -> startActivity(LoginActivity.getStartIntent(this)));
+            }
+        }
+        else {
+            Intent mainActivityIntent = MainActivity.getStartIntent(this);
+            String userName = account.getDisplayName();
+            if(userName == null || userName.isEmpty()) {
+                userName = account.getId();
+            }
+            mainActivityIntent.putExtra(Constants.LOGGED_IN_USER_NAME, userName);
+            startActivity(mainActivityIntent);
+        }
     }
 
     @Override

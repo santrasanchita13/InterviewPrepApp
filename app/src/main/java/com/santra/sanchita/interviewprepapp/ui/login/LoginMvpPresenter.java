@@ -7,5 +7,5 @@ import com.santra.sanchita.interviewprepapp.ui.base.MvpPresenter;
  */
 
 public interface LoginMvpPresenter<V extends LoginMvpView> extends MvpPresenter<V> {
-    void getQuestionList();
+    void saveOnlineAuthCode(String authCode);
 }

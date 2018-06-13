@@ -1,8 +1,6 @@
 package com.santra.sanchita.interviewprepapp.ui.login;
 
-import com.santra.sanchita.interviewprepapp.R;
 import com.santra.sanchita.interviewprepapp.data.DataManager;
-import com.santra.sanchita.interviewprepapp.data.db.model.InterviewItem;
 import com.santra.sanchita.interviewprepapp.ui.base.BasePresenter;
 import com.santra.sanchita.interviewprepapp.utils.rx.SchedulerProvider;
 
@@ -29,6 +27,12 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
     }
 
     @Override
+    public void saveOnlineAuthCode(String authCode) {
+        getDataManager().setAuthCode(authCode);
+        getMvpView().signUpSuccessful();
+    }
+
+    /*@Override
     public void getQuestionList() {
         getCompositeDisposable().add(getDataManager()
                 .getInterviewQuestions()
@@ -49,5 +53,5 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
                     }
                     getMvpView().onError(R.string.default_error);
                 }));
-    }
+    }*/
 }

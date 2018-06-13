@@ -1,6 +1,5 @@
 package com.santra.sanchita.interviewprepapp.ui.login;
 
-import com.santra.sanchita.interviewprepapp.data.db.model.InterviewItem;
 import com.santra.sanchita.interviewprepapp.ui.base.MvpView;
 
 /**
@@ -8,5 +7,5 @@ import com.santra.sanchita.interviewprepapp.ui.base.MvpView;
  */
 
 public interface LoginMvpView extends MvpView {
-    void addToList(InterviewItem interviewItem);
+    void signUpSuccessful();
 }

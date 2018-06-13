@@ -3,4 +3,6 @@
     <string name="default_error">Error!!</string>
     <string name="default_text">Default text</string>
     <string name="loading_text">Just a moment…</string>
+
+    <string name="sign_up">Sign in with Google</string>
 </resources>

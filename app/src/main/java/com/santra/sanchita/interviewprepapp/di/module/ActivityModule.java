@@ -8,6 +8,9 @@ import com.santra.sanchita.interviewprepapp.di.PerActivity;
 import com.santra.sanchita.interviewprepapp.ui.login.LoginMvpPresenter;
 import com.santra.sanchita.interviewprepapp.ui.login.LoginMvpView;
 import com.santra.sanchita.interviewprepapp.ui.login.LoginPresenter;
+import com.santra.sanchita.interviewprepapp.ui.main.MainMvpPresenter;
+import com.santra.sanchita.interviewprepapp.ui.main.MainMvpView;
+import com.santra.sanchita.interviewprepapp.ui.main.MainPresenter;
 import com.santra.sanchita.interviewprepapp.ui.splash.SplashMvpPresenter;
 import com.santra.sanchita.interviewprepapp.ui.splash.SplashMvpView;
 import com.santra.sanchita.interviewprepapp.ui.splash.SplashPresenter;
@@ -60,6 +63,12 @@ public class ActivityModule {
     @Provides
     @PerActivity
     LoginMvpPresenter<LoginMvpView> provideLoginPresenter(LoginPresenter<LoginMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    MainMvpPresenter<MainMvpView> provideMainPresenter(MainPresenter<MainMvpView> presenter) {
         return presenter;
     }
 }
