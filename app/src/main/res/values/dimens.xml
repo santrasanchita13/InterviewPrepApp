@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="large_width">128dp</dimen>
+    <dimen name="medium_width">64dp</dimen>
+    <dimen name="less_medium_width">48dp</dimen>
+    <dimen name="page_indicator_width">8dp</dimen>
+
+    <dimen name="large_margin">64dp</dimen>
+    <dimen name="medium_margin">32dp</dimen>
+    <dimen name="small_margin">16dp</dimen>
+    <dimen name="smaller_margin">8dp</dimen>
+    <dimen name="smallest_margin">1dp</dimen>
+    <dimen name="width_margin_edit_text">80dp</dimen>
+
+    <dimen name="medium_elevation">8dp</dimen>
+
+    <dimen name="corner_small">4dp</dimen>
+    <dimen name="corner_medium">8dp</dimen>
+    <dimen name="corner_round_button">24dp</dimen>
+
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="large_text_size">16sp</dimen>
+    <dimen name="largest_text_size">30sp</dimen>
+
+    <dimen name="icon_size">20sp</dimen>
+</resources>
