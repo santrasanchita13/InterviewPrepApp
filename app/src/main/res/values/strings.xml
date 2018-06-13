@@ -16,4 +16,5 @@
 
     <string name="no_answer_error">Please type an answer</string>
     <string name="actual_answer">The proper answer to give would be&#8230;</string>
+    <string name="all_questions_solved">You have solved all questions!!\nWell done!!!</string>
 </resources>

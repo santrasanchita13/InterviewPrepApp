@@ -10,6 +10,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/questionActivityAd">
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayoutQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView

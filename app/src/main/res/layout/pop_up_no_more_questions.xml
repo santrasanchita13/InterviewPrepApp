@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_button_white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/wellDoneIconTextView"
+        android:layout_width="@dimen/pop_up_width"
+        android:layout_height="wrap_content"
+        android:text="@string/fa_id_thumbs_up"
+        android:textSize="@dimen/icon_size"
+        android:paddingTop="@dimen/small_margin"
+        android:fontFamily="@font/fontawesome"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"/>
+    <TextView
+        android:id="@+id/weelDoneTextView"
+        app:layout_constraintTop_toBottomOf="@+id/wellDoneIconTextView"
+        android:layout_width="@dimen/pop_up_width"
+        android:layout_height="wrap_content"
+        android:text="@string/all_questions_solved"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:padding="@dimen/small_margin"/>
+</android.support.constraint.ConstraintLayout>

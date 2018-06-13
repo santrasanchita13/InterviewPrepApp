@@ -50,7 +50,7 @@ public class QuestionPresenter<V extends QuestionMvpView> extends BasePresenter<
                     if(!isViewAttached()) {
                         return;
                     }
-                    getMvpView().onError(R.string.default_error);
+                    getMvpView().questionListEmpty();
                 }));
         return null;
     }

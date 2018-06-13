@@ -11,6 +11,7 @@ import android.support.constraint.ConstraintLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -39,6 +40,9 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
 
     @BindView(R.id.answerEditText)
     EditText answerEditText;
+
+    @BindView(R.id.constraintLayoutQuestion)
+    ConstraintLayout constraintLayoutQuestion;
 
     InterviewItem presentQuestion = null;
 
@@ -89,7 +93,7 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
 
     @Override
     public void questionListEmpty() {
-        this.finish();
+        showfinishedPopUp();
     }
 
     @OnClick(R.id.questionActivityAd)
@@ -145,6 +149,37 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
             popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
 
             popupWindow.setOnDismissListener(() -> presenter.getQuestion());
+        }
+    }
+
+    public void showfinishedPopUp() {
+
+        constraintLayoutQuestion.setVisibility(View.GONE);
+
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(answerEditText.getWindowToken(), 0);
+        }
+
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        if(inflater != null) {
+            View popupView = inflater.inflate(R.layout.pop_up_no_more_questions, null);
+
+            int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+            int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+            boolean focusable = true; // lets taps outside the popup also dismiss it
+            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+            popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            popupWindow.setAnimationStyle(R.style.SlideAnimation);
+
+            // show the popup window
+            popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
+
+            popupWindow.setOnDismissListener(QuestionActivity.this::finish);
         }
     }
 }
