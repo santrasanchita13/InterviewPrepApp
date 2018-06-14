@@ -6,6 +6,13 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
+import android.support.v4.view.ViewCompat;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -19,12 +26,14 @@ import com.santra.sanchita.interviewprepapp.ui.base.BaseActivity;
 import com.santra.sanchita.interviewprepapp.ui.login.LoginActivity;
 import com.santra.sanchita.interviewprepapp.ui.main.MainActivity;
 import com.santra.sanchita.interviewprepapp.utils.Constants;
+import com.santra.sanchita.interviewprepapp.utils.EspressoIdlingResource;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -35,6 +44,9 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Inject
     SplashMvpPresenter<SplashMvpView> presenter;
+
+    @BindView(R.id.imageLogoLauncher)
+    ImageView imageLogoLauncher;
 
     private GoogleSignInClient mGoogleSignInClient;
 
@@ -104,6 +116,10 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
             }
         }
         else {
+            Pair<View, String> sharedElement = Pair.create(imageLogoLauncher, ViewCompat.getTransitionName(imageLogoLauncher));
+
+            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(SplashActivity.this, sharedElement);
+
             Intent mainActivityIntent = MainActivity.getStartIntent(this);
             String userName = account.getDisplayName();
             if(userName == null || userName.isEmpty()) {
@@ -111,7 +127,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
             }
             mainActivityIntent.putExtra(Constants.LOGGED_IN_USER_NAME, userName);
             finish();
-            startActivity(mainActivityIntent);
+            startActivity(mainActivityIntent, optionsCompat.toBundle());
         }
     }
 
@@ -119,5 +135,10 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     public void errorSyncingDatabase() {
         onError(R.string.default_error);
         finish();
+    }
+
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
     }
 }

@@ -24,7 +24,7 @@ public interface Constants {
 
     String REQUEST_HEADER = "Content-Type: application/json";
 
-    int FADE_DEFAULT_TIME = 500;
+    int FADE_DEFAULT_TIME = 1000;
     int MOVE_DEFAULT_TIME = 500;
     int MOVE_DELAY_TIME = 500;
     int SPLASH_DELAY = 1000;

@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/questionLabelTextView"
-                android:text="@string/default_text"
+                android:text="@string/blank_text"
                 android:textSize="@dimen/text_size"
                 android:textColor="@color/white"
                 android:textIsSelectable="true"

@@ -2,6 +2,7 @@
     <string name="app_name">Interview Preparation App</string>
     <string name="default_error">Error!!</string>
     <string name="default_text">Default text</string>
+    <string name="blank_text"> </string>
     <string name="loading_text">Just a moment…</string>
 
     <string name="ad_unit_id_gallery">ca-app-pub-3940256099942544/6300978111</string>
@@ -17,14 +18,12 @@
     <string name="no_answer_error">Please type an answer</string>
     <string name="actual_answer">The proper answer to give would be&#8230;</string>
     <string name="all_questions_solved">You have solved all questions!!\nWell done!!!</string>
-    
     <string name="no_questions_solved">Oh! You haven\'t solved any questions yet!!\n
         You can find some questions to solve on click of \"Start Preparation\" button</string>
-
     <string name="start_prep_instructions">\"Start Preparation\" button let\'s you solve questions and understand the
     correct answer.</string>
-
     <string name="revision_instructions">\"Revision\" button allows you to see previously solved quesiton-answers.</string>
-
     <string name="final_instruction">You are sure to benefit from this app. Wishing you good luck!</string>
+
+    <string name="transition_logo">transitionLogo</string>
 </resources>

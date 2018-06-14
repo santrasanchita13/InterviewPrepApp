@@ -102,6 +102,7 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
         else {
             answerEditText.setText("");
         }
+
         questionTextView.setText(question.getQuestion());
     }
 
@@ -140,6 +141,12 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
     }
 
     public void showPopUp() {
+
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(answerEditText.getWindowToken(), 0);
+        }
+
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
