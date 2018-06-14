@@ -58,7 +58,7 @@ public class QuestionPresenterTest {
     }
 
     @Test
-    public void loadApp_InitiateDb() {
+    public void checkGetQuestionAndUpdate() {
 
         List<InterviewItem> questionList = new ArrayList<>();
         questionList.add(new InterviewItem("Hi", "Hello", "", false));
@@ -70,9 +70,23 @@ public class QuestionPresenterTest {
 
         presenter.onAttach(view);
 
+        presenter.getQuestion();
+
         testScheduler.triggerActions();
 
         verify(view).questionFetched(questionList.get(0));
+
+        InterviewItem interviewItem = new InterviewItem("Hi", "Hi2", "", false);
+
+        doReturn(Observable.just(true))
+                .when(dataManager)
+                .updateAnswer(interviewItem);
+
+        presenter.updateAnswer(interviewItem);
+
+        testScheduler.triggerActions();
+
+        verify(view).submittedAnswer();
     }
 
     @After

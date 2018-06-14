@@ -1,7 +1,6 @@
 package com.santra.sanchita.interviewprepapp;
 
 import com.santra.sanchita.interviewprepapp.data.DataManager;
-import com.santra.sanchita.interviewprepapp.data.db.model.InterviewItem;
 import com.santra.sanchita.interviewprepapp.data.network.model.InterviewNetworkModel;
 import com.santra.sanchita.interviewprepapp.data.network.model.Question;
 import com.santra.sanchita.interviewprepapp.utils.rx.TestSchedulerProvider;
@@ -14,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -23,7 +23,6 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.TestScheduler;
 
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -62,7 +61,6 @@ public class SplashPresenterTest {
     @Test
     public void loadApp_InitiateDb() {
 
-        InterviewNetworkModel interviewNetworkModel = new InterviewNetworkModel();
         List<Question> questions = new ArrayList<>();
         Question question1 = new Question();
         question1.setQuestion("Hi");
@@ -72,11 +70,15 @@ public class SplashPresenterTest {
         question2.setAnswer("Hello2");
         questions.add(question1);
         questions.add(question2);
+
+        InterviewNetworkModel interviewNetworkModel = new InterviewNetworkModel();
+
         interviewNetworkModel.setQuestions(questions);
 
-        doReturn(Observable.just(interviewNetworkModel))
-                .when(dataManager)
-                .getQuestions();
+        Mockito.doReturn(Observable.just(interviewNetworkModel))
+                .when(dataManager).getQuestions();
+
+        presenter.syncDatabase();
 
         testScheduler.triggerActions();
 
