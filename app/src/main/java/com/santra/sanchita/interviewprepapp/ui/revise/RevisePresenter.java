@@ -38,9 +38,7 @@ public class RevisePresenter<V extends ReviseMvpView> extends BasePresenter<V> i
                     if (!isViewAttached()) {
                         return;
                     }
-                    if(updated) {
-                        getMvpView().reviseQuestion(interviewItem);
-                    }
+                    getMvpView().reviseQuestion(interviewItem);
                 }, throwable -> {
                     if(!isViewAttached()) {
                         return;

@@ -12,7 +12,7 @@ import retrofit2.http.Headers;
  */
 
 public interface QuestionsAPI {
-    @GET("/api/android/datastructure")
+    @GET(Constants.QuestionsAPI)
     @Headers(Constants.REQUEST_HEADER)
     Call<InterviewNetworkModel> getQuestionList();
 }

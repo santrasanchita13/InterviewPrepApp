@@ -85,7 +85,7 @@ public class QuestionActivity extends BaseActivity implements QuestionMvpView {
         if(getIntent().getBooleanExtra(Constants.REVISION, false)) {
             InterviewItem interviewItem = new InterviewItem(getIntent().getStringExtra(Constants.REVISING_QUESTION),
                     getIntent().getStringExtra(Constants.REVISING_ANSWER),
-                    getIntent().getStringExtra(Constants.REVISING_USER_ANSWER), false);
+                    getIntent().getStringExtra(Constants.REVISING_USER_ANSWER), true);
             questionFetched(interviewItem);
         }
         else {

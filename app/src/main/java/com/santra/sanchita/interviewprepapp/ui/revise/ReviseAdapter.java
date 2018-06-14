@@ -73,7 +73,7 @@ public class ReviseAdapter extends RecyclerView.Adapter<ReviseAdapter.ViewHolder
         galleryViewHolder.itemView.setOnClickListener(view -> {
             int pos = (int) view.findViewById(R.id.questionRevise).getTag();
             InterviewItem updateItem = interviewItemList.get(pos);
-            updateItem.setSolved(false);
+            updateItem.setSolved(true);
             presenter.updateAnswer(updateItem);
         });
     }
